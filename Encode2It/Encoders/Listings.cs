@@ -1,5 +1,3 @@
-using System.Data.Common;
-using System.Runtime.CompilerServices;
 using Encode2It.Core;
 
 namespace Encode2It.Encoders;
