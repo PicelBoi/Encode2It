@@ -1,0 +1,39 @@
+namespace Encode2It.Core;
+
+public class Delimited
+{
+    // How much data is in such.
+    public int Count { get; set; } = 0;
+
+    // An array of string arrays. Each string array is a line, and each line contains values.
+    public string[][] Lines { get; set; } = [];
+
+    // Generate!
+    public static string Generate()
+    {
+        // The content.
+        string content = "";
+
+        // For each line, generate a line.
+        foreach (string[] line in Lines)
+        {
+            string lineContent = "";
+
+            // Add each value to the line.
+            foreach (string value in line)
+            {
+                lineContent += value + "|";
+            }
+
+            // Once that's done, remove the trailing vertical bar and add a newline.
+            lineContent.TrimEnd("|");
+            lineContent += "\n";
+
+            // Add line's content to file content.
+            content += lineContent;
+        }
+
+        // Return content.
+        return content;
+    }
+}
