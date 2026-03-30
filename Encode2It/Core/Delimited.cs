@@ -9,7 +9,7 @@ public class Delimited
     public string[][] Lines { get; set; } = [];
 
     // Generate!
-    public static string Generate()
+    public string Generate()
     {
         // The content.
         string content = "";
