@@ -25,8 +25,7 @@ public class Delimited
                 lineContent += value + "|";
             }
 
-            // Once that's done, remove the trailing vertical bar and add a newline.
-            lineContent.TrimEnd("|");
+            // Once that's done, add a newline.
             lineContent += "\n";
 
             // Add line's content to file content.
