@@ -2,9 +2,6 @@ namespace Encode2It.Core;
 
 public class Delimited
 {
-    // How much data is in such.
-    public int Count { get; set; } = 0;
-
     // An array of string arrays. Each string array is a line, and each line contains values.
     public string[][] Lines { get; set; } = [];
 
