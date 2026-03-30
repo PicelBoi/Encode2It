@@ -56,7 +56,7 @@ public class Listings
     public string Generate()
     {
         Delimited delimited = new();
-        List<string[]> lines = new();
+        List<string[]> lines = [];
         foreach (Listing listing in Listing)
         {
             lines.Add(
