@@ -4,7 +4,7 @@ using Encode2It.Core;
 
 namespace Encode2It.Encoders;
 
-public enum Types
+public enum ListingTypes
 {
     Default = 0,
     Movies = 3,
@@ -33,7 +33,7 @@ public class Listing
     public string UnknownA { get; set; } = "";
     public int StarRating { get; set; } = 0;
     public int Year { get; set; } = 0000;
-    public Types ProgramType { get; set; } = Types.Default;
+    public ListingTypes ProgramType { get; set; } = ListingTypes.Default;
     public string Category { get; set; } = "";
     public string Actor { get; set; } = "";
     public string RatingA { get; set; } = "N/A";
