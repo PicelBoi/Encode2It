@@ -4,11 +4,9 @@ An encoder for the Zap2It cable guide.
 
 ## Supported Inputs
 
-- Guide:
+- Listings:
   - XMLTV
   - Mist Streaming
-- Ads:
-  - JSON Array
 - Weather:
   - Open-Meteo
 
