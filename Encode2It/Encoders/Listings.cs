@@ -74,7 +74,7 @@ public class Listings
                     listing.Episode.ToString(),
                     listing.UnknownA,
                     new string('*', listing.StarRating),
-                    listing.Year.ToString(),
+                    listing.Year.ToString().ToString().PadLeft(4, '0'),
                     listing.ProgramType.ToString().PadLeft(2, '0'),
                     listing.Category,
                     listing.Actor,
