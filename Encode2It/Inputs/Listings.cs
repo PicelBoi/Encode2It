@@ -2,6 +2,7 @@ using Encode2It.Encoders;
 using Encode2It.Core;
 using Encode2It.Schemas.Inputs.Listing;
 using System.Text.Json;
+using XmlTvSharp;
 
 namespace Encode2It.Inputs;
 
@@ -57,7 +58,92 @@ public class ListingsInputs
             Log.Error("Unable to grab Mist Streaming data: " + ex.ToString());
             return [];
         }
+    }
 
+    public async Task<List<Listing>> XMLTV(string path)
+    {
+        // Code taken from example: https://github.com/eddami/XmlTvSharp/tree/main
+        // Cancellation token
+        var cancellationToken = new CancellationToken();
+
+        // Customize the parsing behaviour
+        var settings = new XmlTvReaderSettings();
+
+        // Read all TV channels and programmes asynchronously
+        var result = await XmlTvReader.ReadAllAsync(path, settings, cancellationToken);
+
+        if (result != null)
+        {
+            Dictionary<string, string[]> channels = new();
+            channels[string.Empty] = ["0", "UNKN"];
+
+            foreach (XmlTvChannel channel in result.Channels)
+            {
+                string[] names = ["0", "UNKN"];
+                foreach (string? name in channel.DisplayNames.Values)
+                {
+                    if (name != null)
+                    {
+                        string[] split = name.Split(" ");
+                        if (split.Length == 2)
+                        {
+                            if (Convert.ToDouble(split[0]) != 0)
+                            {
+                                names[0] = split[0];
+                            }
+                            names[1] = split[1];
+                        }
+                        else
+                        {
+                            names[1] = name;
+                        }
+                    }
+                }
+                channels[channel.Id] = names;
+                Console.WriteLine(channel.Id + ": " + names[0] + "/" + names[1]);
+            }
+
+            List<Listing> listings = [];
+            foreach (XmlTvProgramme program in result.Programmes)
+            {
+                int onscreen_epi = 0;
+                string zap2it_epi = "";
+                foreach (XmlTvEpisode episode in program.Episodes ?? [])
+                {
+                    if (episode.System == "onscreen")
+                    {
+                        onscreen_epi = Convert.ToInt16(episode.Value);
+                    }
+                    else if (episode.System == "dd_progid")
+                    {
+                        zap2it_epi = episode.Value ?? "";
+                    }
+                }
+                listings.Add(new()
+                {
+                    ChannelNumber = Convert.ToInt16(channels[program.ChannelId][0]),
+                    Callsign = channels[program.ChannelId][1],
+                    Time = program.Start.DateTime,
+                    Duration = (int)(program.Stop.ToUnixTimeSeconds() - program.Start.ToUnixTimeSeconds()),
+                    Titles = [program.Titles.Values.First(), "", "", "", ""],
+                    Subtitle = (program.SubTitles ?? new Dictionary<string, string>() { { "en", "" } }).Values.First(),
+                    Description = (program.Descriptions ?? new Dictionary<string, string>() { { "en", "" } }).Values.First(),
+                    Actor = string.Join(", ", program.Actors ?? [""]),
+                    Country = (program.Countries ?? [""]).First(),
+                    Category = (program.Categories ?? [""]).First(),
+                    StarRating = (int)Convert.ToDouble(program.StarRating ?? "0"),
+                    Episode = onscreen_epi,
+                    TMSId = zap2it_epi
+                });
+            }
+
+            return listings;
+        }
+        else
+        {
+            Log.Error("Unable to parse XMLTV");
+            return [];
+        }
 
     }
 }
