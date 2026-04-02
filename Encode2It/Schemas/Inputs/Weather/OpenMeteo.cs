@@ -29,6 +29,7 @@ public class OpenMeteoHourlyUnits
     public string time = "unixtime";
     public string temperature_2m = "F";
     public string weather_code = "wmo code";
+    public string is_day = "";
 }
 
 public class OpenMeteoHourly
@@ -36,6 +37,7 @@ public class OpenMeteoHourly
     public int[] time = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     public double[] temperature_2m = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,];
     public int[] weather_code = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    public int[] is_day = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
 
 public class OpenMeteoDailyUnits
