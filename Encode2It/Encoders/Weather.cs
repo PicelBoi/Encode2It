@@ -140,14 +140,17 @@ public class EighteenHourForecast
                 WxInfo[0].DaypartStr,
                 WxInfo[0].HighTemp.ToString().PadLeft(2, '0'),
                 WxInfo[0].LowTemp.ToString().PadLeft(2, '0'),
+                WxInfo[0].Condition.Icon.ToString().PadLeft(2, '0'),
                 WxInfo[1].DaypartTag,
                 WxInfo[1].DaypartStr,
                 WxInfo[1].HighTemp.ToString().PadLeft(2, '0'),
                 WxInfo[1].LowTemp.ToString().PadLeft(2, '0'),
+                WxInfo[1].Condition.Icon.ToString().PadLeft(2, '0'),
                 WxInfo[2].DaypartTag,
                 WxInfo[2].DaypartStr,
                 WxInfo[2].HighTemp.ToString().PadLeft(2, '0'),
                 WxInfo[2].LowTemp.ToString().PadLeft(2, '0'),
+                WxInfo[2].Condition.Icon.ToString().PadLeft(2, '0'),
             ]
         );
 
