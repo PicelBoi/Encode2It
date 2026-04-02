@@ -1,7 +1,7 @@
 ﻿using Encode2It.Core;
 
 // Create new logger.
-Logger logger = new("Encode2It - Main");
+Logger logger = new("Main");
 
 // Awesome banner
 Console.WriteLine("""
@@ -15,5 +15,4 @@ Console.WriteLine("""
 
 """);
 Console.WriteLine("Made by PicelBoi");
-
 
