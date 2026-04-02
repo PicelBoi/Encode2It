@@ -27,7 +27,7 @@ public class ListingsInputs
                 {
                     listings.Add(new()
                     {
-                        ChannelNumber = publicChannel.channel_number ?? rnd.Next(500, 999),
+                        ChannelNumber = publicChannel.channel_number ?? -1,
                         Callsign = publicChannel.channel_id.ToUpper(),
                         Duration = 72000,
                         Titles = [
