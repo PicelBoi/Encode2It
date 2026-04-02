@@ -16,3 +16,5 @@ Console.WriteLine("""
 """);
 Console.WriteLine("Made by PicelBoi");
 
+// Create config class.
+Config config = new();
