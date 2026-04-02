@@ -63,7 +63,7 @@ public class TimedTasks
 
             logger.Info("Writing down data...");
             // Now write!
-            string path = Path.Combine(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, DateTime.Now.ToString("MMddyyyy") + ".del");
+            string path = Path.Join(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, DateTime.Now.ToString("MMddyyyy") + ".del");
             logger.Debug("Path: " + path);
             string fileContent = new Listings() { Listing = listings }.Generate();
             logger.Debug("File Content:\n" + fileContent);
@@ -111,19 +111,19 @@ public class TimedTasks
 
             // Now write!
             logger.Info("Writing down current conditions data...");
-            string path = Path.Combine(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "uscur.txt");
+            string path = Path.Join(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "uscur.txt");
             logger.Debug("Path: " + path);
             File.WriteAllText(path, weatherDataset.currentConditions.Generate());
             logger.Info("Wrote down current conditions data!");
 
             logger.Info("Writing down 3 day forecast data...");
-            path = Path.Combine(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "us3day.txt");
+            path = Path.Join(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "us3day.txt");
             logger.Debug("Path: " + path);
             File.WriteAllText(path, weatherDataset.threeDayForecast.Generate());
             logger.Info("Wrote down 3 day forecast data!");
 
             logger.Info("Writing down 18 hour forecast data...");
-            path = Path.Combine(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "18hour.txt");
+            path = Path.Join(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "18hour.txt");
             logger.Debug("Path: " + path);
             File.WriteAllText(path, weatherDataset.eighteenHourForecast.Generate());
             logger.Info("Wrote down 18 hour forecast data!");
