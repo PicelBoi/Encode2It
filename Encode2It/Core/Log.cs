@@ -36,6 +36,11 @@ public class Logger
         Console.WriteLine(message);
     }
 
+    public void Debug(string msg)
+    {
+        LogTemplate("DEBUG", msg, ConsoleColor.Gray, ConsoleColor.Black);
+    }
+
     public void Info(string msg)
     {
         LogTemplate("INFO", msg, ConsoleColor.White, ConsoleColor.Black);
