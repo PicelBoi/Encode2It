@@ -9,6 +9,7 @@ public class OpenMeteoCurrentUnits
     public string surface_pressure = "hPa";
     public string wind_speed_10m = "mp/h";
     public string wind_direction_10m = "";
+    public string is_day = "";
 }
 
 public class OpenMeteoCurrent
@@ -20,6 +21,7 @@ public class OpenMeteoCurrent
     public double surface_pressure = 0.0;
     public double wind_speed_10m = 3.5;
     public int wind_direction_10m = 252;
+    public int is_day = 0;
 }
 
 public class OpenMeteoHourlyUnits
