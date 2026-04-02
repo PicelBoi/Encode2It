@@ -114,7 +114,7 @@ public class InputConfigClass
     [XmlElement(ElementName = "WeatherInput")]
     public WeatherInputConfigClass Weather { get; set; } = new();
 
-    [XmlAnyElement(Name = "LisitingInputComment")]
+    [XmlAnyElement(Name = "ListingInputComment")]
     public XmlComment ListingInputComment { get { return new XmlDocument().CreateComment("This sets the provider(s) for the listing data provided by this encoder. Multiple can be set."); } set { } }
 
     [XmlElement(ElementName = "ListingInputs")]
@@ -138,6 +138,20 @@ public class HeadendConfigClass
 
 }
 
+[XmlRoot(ElementName = "TimingConfig")]
+public class TimingConfigClass
+{
+    [XmlAnyElement(Name = "ListingIntervalComment")]
+    public XmlComment ListingIntComment { get { return new XmlDocument().CreateComment("This defines the interval between each time Encode2It generates listings in milliseconds."); } set { } }
+    [XmlElement(ElementName = "ListingInterval")]
+    public int ListingInt = 300000;
+
+    [XmlAnyElement(Name = "WeatherIntervalComment")]
+    public XmlComment WeatherIntComment { get { return new XmlDocument().CreateComment("This defines the interval between each time Encode2It generates weather data in milliseconds."); } set { } }
+    [XmlElement(ElementName = "WeatherInterval")]
+    public int WeatherInt = 3600000;
+}
+
 [XmlRoot(ElementName = "Encode2ItConfig")]
 public class ConfigSchema
 {
@@ -154,4 +168,10 @@ public class ConfigSchema
 
     [XmlElement(ElementName = "InputConfig")]
     public InputConfigClass InputConfig { get; set; } = new();
+
+    [XmlAnyElement(Name = "TimingComment")]
+    public XmlComment TimingComment { get { return new XmlDocument().CreateComment("This is where timing-specific config data is set."); } set { } }
+
+    [XmlElement(ElementName = "TimingConfig")]
+    public TimingConfigClass TimingConfig { get; set; } = new();
 }
