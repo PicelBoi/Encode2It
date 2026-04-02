@@ -330,29 +330,29 @@ public class WeatherInputs
                             new() {
                                 LowTemp = (int)wxData.hourly.temperature_2m[0],
                                 HighTemp = (int)wxData.hourly.temperature_2m[0],
-                                DaypartTag = GenerateDaypartHourlyTag(wxData.daily.time[0]),
-                                DaypartStr = GenerateDaypartHourlyString(wxData.daily.time[0]),
+                                DaypartTag = GenerateDaypartHourlyTag(wxData.hourly.time[0]),
+                                DaypartStr = GenerateDaypartHourlyString(wxData.hourly.time[0]),
                                 Condition = wxData.hourly.is_day[0] == 1 ? OpenMeteo2WxDay[wxData.hourly.weather_code[0]] : OpenMeteo2WxNight[wxData.hourly.weather_code[0]]
                             },
                             new() {
                                 LowTemp = (int)wxData.hourly.temperature_2m[3],
                                 HighTemp = (int)wxData.hourly.temperature_2m[3],
-                                DaypartTag = GenerateDaypartHourlyTag(wxData.daily.time[3]),
-                                DaypartStr = GenerateDaypartHourlyString(wxData.daily.time[3]),
+                                DaypartTag = GenerateDaypartHourlyTag(wxData.hourly.time[3]),
+                                DaypartStr = GenerateDaypartHourlyString(wxData.hourly.time[3]),
                                 Condition = wxData.hourly.is_day[3] == 1 ? OpenMeteo2WxDay[wxData.hourly.weather_code[3]] : OpenMeteo2WxNight[wxData.hourly.weather_code[3]]
                             },
                             new() {
                                 LowTemp = (int)wxData.hourly.temperature_2m[7],
                                 HighTemp = (int)wxData.hourly.temperature_2m[7],
-                                DaypartTag = GenerateDaypartHourlyTag(wxData.daily.time[7]),
-                                DaypartStr = GenerateDaypartHourlyString(wxData.daily.time[7]),
+                                DaypartTag = GenerateDaypartHourlyTag(wxData.hourly.time[7]),
+                                DaypartStr = GenerateDaypartHourlyString(wxData.hourly.time[7]),
                                 Condition = wxData.hourly.is_day[7] == 1 ? OpenMeteo2WxDay[wxData.hourly.weather_code[7]] : OpenMeteo2WxNight[wxData.hourly.weather_code[7]]
                             },
                             new() {
                                 LowTemp = (int)wxData.hourly.temperature_2m[11],
                                 HighTemp = (int)wxData.hourly.temperature_2m[11],
-                                DaypartTag = GenerateDaypartHourlyTag(wxData.daily.time[11]),
-                                DaypartStr = GenerateDaypartHourlyString(wxData.daily.time[11]),
+                                DaypartTag = GenerateDaypartHourlyTag(wxData.hourly.time[11]),
+                                DaypartStr = GenerateDaypartHourlyString(wxData.hourly.time[11]),
                                 Condition = wxData.hourly.is_day[11] == 1 ? OpenMeteo2WxDay[wxData.hourly.weather_code[11]] : OpenMeteo2WxNight[wxData.hourly.weather_code[11]]
                             },
                         ]
