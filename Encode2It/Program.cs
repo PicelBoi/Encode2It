@@ -6,9 +6,6 @@ string[] versioninfo = [
     "Welcome to your new guide (encoder)!"
 ];
 
-// Create new logger.
-Logger logger = new("Main");
-
 // Awesome banner
 Console.WriteLine("-----------------------------------------------------------------------");
 Console.WriteLine("""
@@ -25,6 +22,9 @@ Console.WriteLine($"Version {versioninfo[0]} - {versioninfo[1]}");
 Console.WriteLine("Made by PicelBoi");
 Console.WriteLine("-----------------------------------------------------------------------");
 Console.WriteLine("\n");
+
+// Create new logger.
+Logger logger = new("Main");
 
 // Create config class.
 Config config = new();
