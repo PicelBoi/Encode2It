@@ -132,7 +132,7 @@ public class ListingsInputs
                     Country = (program.Countries ?? [""]).First(),
                     Category = (program.Categories ?? [""]).First(),
                     StarRating = (int)Convert.ToDouble(program.StarRating ?? "0"),
-                    Episode = onscreen_epi,
+                    Episode = onscreen_epi.ToString(),
                     TMSId = zap2it_epi
                 });
             }

@@ -6,7 +6,7 @@ ListingsInputs listingsInputs = new();
 Console.WriteLine(
     new Listings()
     {
-        Listing = await listingsInputs.XMLTV("./xmltv.xml")
+        Listing = await listingsInputs.MistStreaming("https://api.mistweather.com/api/public-channels")
     }.Generate()
 );
 Console.WriteLine(new CurrentConditions().Generate());

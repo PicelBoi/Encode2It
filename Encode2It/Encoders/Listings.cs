@@ -26,11 +26,11 @@ public class Listing
         "Unkn"
     ];
     public string Subtitle { get; set; } = "Episode N/A";
-    public int Episode { get; set; } = 0;
+    public string Episode { get; set; } = "";
     // Unknown.
     public string UnknownA { get; set; } = "";
     public int StarRating { get; set; } = 0;
-    public int Year { get; set; } = 0000;
+    public string Year { get; set; } = "";
     public ListingTypes ProgramType { get; set; } = ListingTypes.Default;
     public string Category { get; set; } = "";
     public string Actor { get; set; } = "";
@@ -71,10 +71,10 @@ public class Listings
                     listing.Titles[2],
                     listing.Titles[3],
                     listing.Titles[4],
-                    listing.Episode.ToString(),
+                    listing.Episode,
                     listing.UnknownA,
                     new string('*', listing.StarRating),
-                    listing.Year.ToString().ToString().PadLeft(4, '0'),
+                    listing.Year,
                     listing.ProgramType.ToString().PadLeft(2, '0'),
                     listing.Category,
                     listing.Actor,
