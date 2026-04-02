@@ -1,4 +1,5 @@
-﻿using Encode2It.Core;
+﻿using Encode2It;
+using Encode2It.Core;
 
 // Version Info
 string[] versioninfo = [
@@ -23,8 +24,16 @@ Console.WriteLine("Made by PicelBoi");
 Console.WriteLine("-----------------------------------------------------------------------");
 Console.WriteLine("\n");
 
-// Create new logger.
-Logger logger = new("Main");
-
 // Create config class.
 Config config = new();
+
+// Create TimedTasks class.
+TimedTasks timedTasks = new(config);
+
+// Start loops.
+Task.WaitAll(
+    timedTasks.ListingLoop(),
+    timedTasks.WeatherLoop()
+);
+
+Console.WriteLine("Goodbye.");
