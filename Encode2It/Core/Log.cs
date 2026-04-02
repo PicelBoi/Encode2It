@@ -5,6 +5,8 @@ public class Logger
 
     public string Name = "Log";
 
+    private Config config = new();
+
     public Logger(string name)
     {
         Directory.CreateDirectory("./Logs");
@@ -38,20 +40,32 @@ public class Logger
 
     public void Debug(string msg)
     {
-        LogTemplate("DEBUG", msg, ConsoleColor.Gray, ConsoleColor.Black);
+        if (config.config.LogConfig.LogLevel <= 0)
+        {
+            LogTemplate("DEBUG", msg, ConsoleColor.Gray, ConsoleColor.Black);
+        }
     }
 
     public void Info(string msg)
     {
-        LogTemplate("INFO", msg, ConsoleColor.White, ConsoleColor.Black);
+        if (config.config.LogConfig.LogLevel <= 1)
+        {
+            LogTemplate("INFO", msg, ConsoleColor.White, ConsoleColor.Black);
+        }
     }
 
     public void Warn(string msg)
     {
-        LogTemplate("WARNING", msg, ConsoleColor.Yellow, ConsoleColor.Black);
+        if (config.config.LogConfig.LogLevel <= 2)
+        {
+            LogTemplate("WARNING", msg, ConsoleColor.Yellow, ConsoleColor.Black);
+        }
     }
     public void Error(string msg)
     {
-        LogTemplate("ERROR", msg, ConsoleColor.Black, ConsoleColor.Red);
+        if (config.config.LogConfig.LogLevel <= 3)
+        {
+            LogTemplate("ERROR", msg, ConsoleColor.Black, ConsoleColor.Red);
+        }
     }
 }

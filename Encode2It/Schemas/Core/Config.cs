@@ -152,6 +152,15 @@ public class TimingConfigClass
     public int WeatherInt = 3600000;
 }
 
+[XmlRoot(ElementName = "LogConfig")]
+public class LogConfigClass
+{
+    [XmlAnyElement(Name = "LogLevelComment")]
+    public XmlComment LogLevelComment { get { return new XmlDocument().CreateComment("This sets the log level. 0 for Debug, 1 for Info, 2 for Warning, 3 for Error."); } set { } }
+    [XmlElement(ElementName = "LogLevel")]
+    public int LogLevel = 3;
+}
+
 [XmlRoot(ElementName = "Encode2ItConfig")]
 public class ConfigSchema
 {
@@ -174,4 +183,10 @@ public class ConfigSchema
 
     [XmlElement(ElementName = "TimingConfig")]
     public TimingConfigClass TimingConfig { get; set; } = new();
+
+    [XmlAnyElement(Name = "LogComment")]
+    public XmlComment LogComment { get { return new XmlDocument().CreateComment("This is where log-specific config data is set."); } set { } }
+
+    [XmlElement(ElementName = "LogConfig")]
+    public LogConfigClass LogConfig { get; set; } = new();
 }
