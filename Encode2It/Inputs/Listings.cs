@@ -39,7 +39,7 @@ public class ListingsInputs
                         ],
                         Subtitle = "",
                         RatingA = "",
-                        ProgramType = publicChannel.is_public ? ListingTypes.Default : ListingTypes.Invisible,
+                        ProgramType = publicChannel.is_public ? (publicChannel.channel_status == "online" ? ListingTypes.Default : ListingTypes.Invisible) : ListingTypes.Invisible,
                         Description = publicChannel.channel_description ?? "",
                         Category = (publicChannel.channel_category ?? [""])[0]
                     });
