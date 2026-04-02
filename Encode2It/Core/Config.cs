@@ -5,7 +5,6 @@ namespace Encode2It.Core;
 
 public class Config
 {
-    private Logger logger = new("Config");
     public ConfigSchema config = new();
 
     public Config()
@@ -19,7 +18,7 @@ public class Config
             // Check if config failed to parse.
             if (tempconfig == null)
             {
-                logger.Error("Failed to parse config! Config must be corrupt! Exiting...");
+                Console.WriteLine("Failed to parse config! Config must be corrupt! Exiting...");
                 Environment.Exit(1);
             }
 
@@ -29,7 +28,7 @@ public class Config
         {
             // Write config and exit.
             new XmlSerializer(typeof(ConfigSchema)).Serialize(File.OpenWrite("./config.xml"), config);
-            logger.Error("Config doesn't exist, therefore we created a new config file. Please set all parameters and try again.");
+            Console.WriteLine("Config doesn't exist, therefore we created a new config file. Please set all parameters and try again.");
             Environment.Exit(0);
         }
     }
