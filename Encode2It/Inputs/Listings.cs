@@ -8,7 +8,7 @@ namespace Encode2It.Inputs;
 
 public class ListingsInputs
 {
-    private readonly Log Log = new("Listing - Inputs");
+    private readonly Logger Log = new("Listing - Inputs");
     public async Task<List<Listing>> MistStreaming(string api)
     {
         try

@@ -1,38 +1,31 @@
-using Microsoft.Extensions.Logging;
-
 namespace Encode2It.Core;
 
-public class Log
+public class Logger
 {
-    private ILoggerFactory Factory = LoggerFactory.Create(builder => builder.AddConsole());
 
-    public ILogger? logger;
+    public string Name = "Log";
 
-    public Log(string name)
+    public Logger(string name)
     {
-        logger = Factory.CreateLogger("Encode2It - " + name);
+        name = "Encode2It - " + name;
+    }
+
+    private static void LogTemplate(string type, string msg)
+    {
+        Console.WriteLine($"[{type}] - {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} - {msg}");
     }
 
     public void Info(string msg)
     {
-        if (logger != null)
-        {
-            logger.LogInformation(msg);
-        }
+        LogTemplate("INFO", msg);
     }
 
     public void Warn(string msg)
     {
-        if (logger != null)
-        {
-            logger.LogWarning(msg);
-        }
+        LogTemplate("WARNING", msg);
     }
     public void Error(string msg)
     {
-        if (logger != null)
-        {
-            logger.LogError(msg);
-        }
+        LogTemplate("ERROR", msg);
     }
 }
