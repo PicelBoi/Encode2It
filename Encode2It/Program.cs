@@ -4,6 +4,7 @@
 Logger logger = new("Main");
 
 // Awesome banner
+Console.WriteLine("-----------------------------------------------------------------------");
 Console.WriteLine("""
 
 ███████╗███╗   ██╗ ██████╗ ██████╗ ██████╗ ███████╗██████╗ ██╗████████╗
@@ -14,7 +15,10 @@ Console.WriteLine("""
 ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝╚═╝   ╚═╝   
 
 """);
+Console.WriteLine("Version v1.0");
 Console.WriteLine("Made by PicelBoi");
+Console.WriteLine("-----------------------------------------------------------------------");
+Console.WriteLine("\n");
 
 // Create config class.
 Config config = new();
