@@ -7,24 +7,24 @@ public enum WeatherIcons
     Sunny = 1,
     MostlySunny = 2,
     PartlySunny = 3,
-    IntermittentClouds = 4,
-    Hazy = 5,
-    MostlyCloudy = 6,
+    IntermittentCloudsDay = 4,
+    HazyDay = 5,
+    MostlyCloudyDay = 6,
     Cloudy = 7,
     Overcast = 8,
     Fog = 11,
     Showers = 12,
-    MostlyCloudyShowers = 13,
-    PartlyCloudyShowers = 14,
+    MostlyCloudyShowersDay = 13,
+    PartlyCloudyShowersDay = 14,
     Thunderstorms = 15,
-    MostlyCloudyTStorms = 16,
-    PartlyCloudyTStorms = 17,
+    MostlyCloudyTStormsDay = 16,
+    PartlyCloudyTStormsDay = 17,
     Rain = 18,
     Flurries = 19,
-    MostlyCloudyFlurries = 20,
-    PartlyCloudyFlurries = 21,
+    MostlyCloudyFlurriesDay = 20,
+    PartlyCloudyFlurriesDay = 21,
     Snow = 22,
-    MostlyCloudySnow = 23,
+    MostlyCloudySnowDay = 23,
     Ice = 24,
     Sleet = 25,
     FreezingRain = 26,
@@ -32,6 +32,24 @@ public enum WeatherIcons
     Hot = 30,
     Cold = 31,
     Windy = 32,
+    Clear = 33,
+    MostlyClear = 34,
+    PartlyClear = 35,
+    IntermittentCloudsNight = 36,
+    HazyNight = 37,
+    MostlyCloudyNight = 38,
+    PartlyCloudyShowersNight = 39,
+    MostlyCloudyShowersNight = 40,
+    PartlyCloudyTStormsNight = 41,
+    MostlyCloudyTStormsNight = 42,
+    MostlyCloudyFlurriesNight = 43,
+    MostlyCloudySnowNight = 44
+}
+
+public class WeatherCondition
+{
+    public string Condition = "CLEAR";
+    public WeatherIcons Icon = WeatherIcons.Sunny;
 }
 
 public class WeatherInfo
@@ -137,4 +155,11 @@ public class EighteenHourForecast
         delimited.Lines = [.. lines];
         return delimited.Generate();
     }
+}
+
+public class WeatherDataset
+{
+    public CurrentConditions currentConditions = new();
+    public ThreeDayForecast threeDayForecast = new();
+    public EighteenHourForecast eighteenHourForecast = new();
 }
