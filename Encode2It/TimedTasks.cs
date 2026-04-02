@@ -23,9 +23,11 @@ public class TimedTasks
         // Make new logger.
         Logger logger = new("TimedTasks - ListingLoop");
 
+        logger.Info("Starting listing loop.");
+
         while (true)
         {
-
+            logger.Info("Listing loop start!");
             // Go though all sources.
             List<Listing> listings = [];
 
