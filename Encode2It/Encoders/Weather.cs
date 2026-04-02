@@ -59,13 +59,12 @@ public class WeatherInfo
     public int Temperature { get; set; } = 0;
     public int HighTemp { get; set; } = 0;
     public int LowTemp { get; set; } = 0;
-    public WeatherIcons Icon { get; set; } = WeatherIcons.Sunny;
+    public WeatherCondition Condition { get; set; } = new();
     public string DaypartTag { get; set; } = "AFT";
     public string DaypartStr { get; set; } = "Afternoon";
     public string WindDirection { get; set; } = "N";
     public double Pressure = 0.00;
     public int WindSpeed = 0;
-    public string Condition = "CLEAR";
 }
 
 public class CurrentConditions
@@ -81,9 +80,9 @@ public class CurrentConditions
                 WxInfo.HeadendId,
                 WxInfo.Location,
                 WxInfo.Temperature.ToString(),
-                WxInfo.Condition,
+                WxInfo.Condition.Condition,
                 WxInfo.WindDirection,
-                WxInfo.Icon.ToString(),
+                WxInfo.Condition.Icon.ToString(),
                 WxInfo.HighTemp.ToString(),
                 WxInfo.Pressure.ToString(),
                 WxInfo.LowTemp.ToString(),
