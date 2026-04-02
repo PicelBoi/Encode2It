@@ -1,5 +1,11 @@
 ﻿using Encode2It.Core;
 
+// Version Info
+string[] versioninfo = [
+    "v1.0",
+    "Welcome to your new guide (encoder)!"
+];
+
 // Create new logger.
 Logger logger = new("Main");
 
@@ -15,7 +21,7 @@ Console.WriteLine("""
 ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝╚═╝   ╚═╝   
 
 """);
-Console.WriteLine("Version v1.0");
+Console.WriteLine($"Version {versioninfo[0]} - {versioninfo[1]}");
 Console.WriteLine("Made by PicelBoi");
 Console.WriteLine("-----------------------------------------------------------------------");
 Console.WriteLine("\n");
