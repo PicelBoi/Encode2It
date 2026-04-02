@@ -6,7 +6,7 @@ namespace Encode2It.Core;
 public class Config
 {
     private Logger logger = new("Config");
-    public ConfigSchema? config = new();
+    public ConfigSchema config = new();
 
     public Config()
     {
@@ -14,14 +14,16 @@ public class Config
         if (File.Exists("./config.xml"))
         {
             // If so, read it and set config.
-            config = (ConfigSchema?)new XmlSerializer(typeof(ConfigSchema)).Deserialize(File.OpenRead("./config.xml"));
+            ConfigSchema? tempconfig = (ConfigSchema?)new XmlSerializer(typeof(ConfigSchema)).Deserialize(File.OpenRead("./config.xml"));
 
             // Check if config failed to parse.
-            if (config == null)
+            if (tempconfig == null)
             {
                 logger.Error("Failed to parse config! Config must be corrupt! Exiting...");
                 Environment.Exit(1);
             }
+
+            config = tempconfig;
         }
         else
         {
