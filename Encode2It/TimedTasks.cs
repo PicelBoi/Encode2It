@@ -65,7 +65,7 @@ public class TimedTasks
 
             File.WriteAllText(path, fileContent);
             logger.Info("Wrote down!");
-            logger.Info($"Now waiting for {config.config.TimingConfig.ListingInt} for next loop...");
+            logger.Info($"Now waiting for {config.config.TimingConfig.ListingInt} ms. for next loop...");
 
             await Task.Delay(config.config.TimingConfig.ListingInt);
         }
@@ -85,14 +85,18 @@ public class TimedTasks
         // Check weather input
         WeatherInputConfigClass weatherInput = config.config.InputConfig.Weather;
 
+        logger.Info("Starting weather loop.");
+
         while (enabled)
         {
-
+            logger.Info("Weather loop start!");
             WeatherDataset weatherDataset = new();
 
             if (weatherInput.Type == "openmeteo")
             {
+                logger.Info("Generating weather data from Open-Meteo input...");
                 weatherDataset = await weatherInputs.OpenMeteoWx(weatherInput.Value, weatherInput.KeyEnabled, weatherInput.Key);
+                logger.Info("Finished generating weather data from Open-Meteo input.");
             }
             else
             {
@@ -101,15 +105,25 @@ public class TimedTasks
             }
 
             // Now write!
+            logger.Info("Writing down current conditions data...");
             string path = Path.Combine(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "uscur.txt");
+            logger.Debug("Path: " + path);
             File.WriteAllText(path, weatherDataset.currentConditions.Generate());
+            logger.Info("Wrote down current conditions data!");
 
+            logger.Info("Writing down 3 day forecast data...");
             path = Path.Combine(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "us3day.txt");
+            logger.Debug("Path: " + path);
             File.WriteAllText(path, weatherDataset.threeDayForecast.Generate());
+            logger.Info("Wrote down 3 day forecast data!");
 
+            logger.Info("Writing down 18 hour forecast data...");
             path = Path.Combine(config.config.HeadendConfig.Path, "/OnCable/EXPORT", config.config.HeadendConfig.Id, "18hour.txt");
+            logger.Debug("Path: " + path);
             File.WriteAllText(path, weatherDataset.eighteenHourForecast.Generate());
+            logger.Info("Wrote down 18 hour forecast data!");
 
+            logger.Info($"Now waiting for {config.config.TimingConfig.WeatherInt} ms. for next loop...");
             await Task.Delay(config.config.TimingConfig.WeatherInt);
         }
     }
