@@ -13,6 +13,11 @@ public class TimedTasks
     public TimedTasks(Config configobj)
     {
         config = configobj;
+        // Make sure directories exist.
+        Directory.CreateDirectory(config.config.HeadendConfig.Path);
+        Directory.CreateDirectory(Path.Join(config.config.HeadendConfig.Path, "/OnCable/"));
+        Directory.CreateDirectory(Path.Join(config.config.HeadendConfig.Path, "/OnCable/EXPORT/"));
+        Directory.CreateDirectory(Path.Join(config.config.HeadendConfig.Path, "/OnCable/EXPORT/" + config.config.HeadendConfig.Id));
     }
 
     public async Task ListingLoop()
