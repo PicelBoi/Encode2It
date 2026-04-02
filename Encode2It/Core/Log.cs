@@ -12,9 +12,9 @@ public class Logger
         Name = name;
     }
 
-    private void LogTemplate(string type, string msg)
+    private void LogTemplate(string type, string msg, ConsoleColor fgcolor, ConsoleColor bgcolor)
     {
-        string message = $"[{type}] - {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} - {msg}";
+        string message = $"[{type}] - {Name} - {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} - {msg}";
         string path = $"./Logs/{Name}/{DateTime.Now.ToShortDateString()}";
         if (!File.Exists(path))
         {
@@ -31,19 +31,22 @@ public class Logger
                 sw.WriteLine(message);
             }
         }
+        Console.BackgroundColor = bgcolor;
+        Console.ForegroundColor = fgcolor;
+        Console.WriteLine(message);
     }
 
     public void Info(string msg)
     {
-        LogTemplate("INFO", msg);
+        LogTemplate("INFO", msg, ConsoleColor.White, ConsoleColor.Black);
     }
 
     public void Warn(string msg)
     {
-        LogTemplate("WARNING", msg);
+        LogTemplate("WARNING", msg, ConsoleColor.Yellow, ConsoleColor.Black);
     }
     public void Error(string msg)
     {
-        LogTemplate("ERROR", msg);
+        LogTemplate("ERROR", msg, ConsoleColor.Black, ConsoleColor.Red);
     }
 }
