@@ -15,7 +15,7 @@ public class Logger
     private void LogTemplate(string type, string msg, ConsoleColor fgcolor, ConsoleColor bgcolor)
     {
         string message = $"[{type}] - {Name} - {DateTime.Now.ToShortDateString()} {DateTime.Now.ToShortTimeString()} - {msg}";
-        string path = $"./Logs/{Name}/{DateTime.Now.ToShortDateString()}";
+        string path = $"./Logs/{Name}/{DateTime.Now.ToString("MM-dd-yyyy")}.txt";
         if (!File.Exists(path))
         {
             // Create a file to write to.
