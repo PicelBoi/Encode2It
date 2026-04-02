@@ -270,12 +270,12 @@ public class WeatherInputs
         }
     }
 
-    public async Task<WeatherDataset> OpenMeteoWx(string api, bool keyenabled, string key)
+    public async Task<WeatherDataset> OpenMeteoWx(string api, bool keyenabled, string key, double latitude, double longitude)
     {
         try
         {
             HttpClient client = new();
-            string url = api + "/v1/forecast?latitude=40.7143&longitude=-74.006&daily=temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code,is_day&current=temperature_2m,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m,is_day&timezone=GMT&timeformat=unixtime&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch&forecast_hours=12";
+            string url = api + $"/v1/forecast?latitude={latitude}&longitude={longitude}&daily=temperature_2m_max,temperature_2m_min&hourly=temperature_2m,weather_code,is_day&current=temperature_2m,weather_code,surface_pressure,wind_speed_10m,wind_direction_10m,is_day&timezone=GMT&timeformat=unixtime&wind_speed_unit=mph&temperature_unit=fahrenheit&precipitation_unit=inch&forecast_hours=12";
             if (keyenabled)
             {
                 api += $"&apikey={key}";

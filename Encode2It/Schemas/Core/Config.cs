@@ -85,6 +85,15 @@ public class WeatherInputConfigClass
     [XmlElement(ElementName = "Value")]
     public string Value { get; set; } = "INSERT_VALUE_HERE";
 
+    [XmlAnyElement(Name = "GeocodeComment")]
+    public XmlComment GeocodeComment { get { return new XmlDocument().CreateComment("Sets where to get weather data for."); } set { } }
+
+    [XmlElement(ElementName = "Latitude")]
+    public double Latitude { get; set; } = 0.0;
+
+    [XmlElement(ElementName = "Longitude")]
+    public double Longitude { get; set; } = 0.0;
+
     [XmlAnyElement(Name = "KeyEnabledComment")]
     public XmlComment KeyEnabledComment { get { return new XmlDocument().CreateComment("If set to true, the supplied API key is sent to the provider (DEPENDS ON TYPE)"); } set { } }
 
