@@ -75,7 +75,7 @@ public class Listings
                     listing.UnknownA,
                     new string('*', listing.StarRating),
                     listing.Year,
-                    listing.ProgramType.ToString().PadLeft(2, '0'),
+                    ((int)listing.ProgramType).ToString(),
                     listing.Category,
                     listing.Actor,
                     listing.RatingA,
