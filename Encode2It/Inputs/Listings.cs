@@ -3,6 +3,7 @@ using Encode2It.Core;
 using Encode2It.Schemas.Inputs.Listing;
 using System.Text.Json;
 using XmlTvSharp;
+using System.Runtime.ExceptionServices;
 
 namespace Encode2It.Inputs;
 
@@ -56,6 +57,8 @@ public class ListingsInputs
         catch (Exception ex)
         {
             Log.Error("Unable to grab Mist Streaming data: " + ex.ToString());
+            var edi = ExceptionDispatchInfo.Capture(ex);
+            edi.Throw();
             return [];
         }
     }

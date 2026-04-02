@@ -2,6 +2,8 @@ using Encode2It.Encoders;
 using Encode2It.Core;
 using Encode2It.Schemas.Inputs.Weather;
 using System.Text.Json;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.ExceptionServices;
 
 namespace Encode2It.Inputs;
 
@@ -288,22 +290,20 @@ public class WeatherInputs
             OpenMeteo? wxData = JsonSerializer.Deserialize<OpenMeteo>(responseBody);
             if (wxData != null)
             {
-                return new()
+                CurrentConditions ccond = new()
                 {
-                    currentConditions = new()
+                    WxInfo = new()
                     {
-                        WxInfo = new()
-                        {
-                            Temperature = (int)wxData.current.temperature_2m,
-                            Condition = wxData.current.is_day == 1 ? OpenMeteo2WxDay[wxData.current.weather_code] : OpenMeteo2WxNight[wxData.current.weather_code],
-                            Pressure = wxData.current.surface_pressure / 33.8639,
-                            WindSpeed = (int)wxData.current.wind_speed_10m,
-                            WindDirection = DegreeToCardinalWindDir(wxData.current.wind_direction_10m)
-                        }
-                    },
-                    threeDayForecast = new()
-                    {
-                        WxInfo = [
+                        Temperature = (int)wxData.current.temperature_2m,
+                        Condition = wxData.current.is_day == 1 ? OpenMeteo2WxDay[wxData.current.weather_code] : OpenMeteo2WxNight[wxData.current.weather_code],
+                        Pressure = wxData.current.surface_pressure / 33.8639,
+                        WindSpeed = (int)wxData.current.wind_speed_10m,
+                        WindDirection = DegreeToCardinalWindDir(wxData.current.wind_direction_10m)
+                    }
+                };
+                ThreeDayForecast threeDay = new()
+                {
+                    WxInfo = [
                             new() {
                                 Temperature = (int)((wxData.daily.temperature_2m_max[0] + wxData.daily.temperature_2m_min[0]) / 2),
                                 LowTemp = (int)wxData.daily.temperature_2m_min[0],
@@ -323,10 +323,10 @@ public class WeatherInputs
                                 DaypartTag = GenerateDaypartDayTag(wxData.daily.time[2]),
                             },
                         ]
-                    },
-                    eighteenHourForecast = new()
-                    {
-                        WxInfo = [
+                };
+                EighteenHourForecast eighteenHour = new()
+                {
+                    WxInfo = [
                             new() {
                                 LowTemp = (int)wxData.hourly.temperature_2m[0],
                                 HighTemp = (int)wxData.hourly.temperature_2m[0],
@@ -356,7 +356,12 @@ public class WeatherInputs
                                 Condition = wxData.hourly.is_day[11] == 1 ? OpenMeteo2WxDay[wxData.hourly.weather_code[11]] : OpenMeteo2WxNight[wxData.hourly.weather_code[11]]
                             },
                         ]
-                    }
+                };
+                return new()
+                {
+                    currentConditions = ccond,
+                    threeDayForecast = threeDay,
+                    eighteenHourForecast = eighteenHour
                 };
             }
             else
@@ -368,6 +373,8 @@ public class WeatherInputs
         catch (Exception ex)
         {
             Log.Error("Unable to grab Open Meteo data: " + ex.ToString());
+            var edi = ExceptionDispatchInfo.Capture(ex);
+            edi.Throw();
             return new();
         }
     }
