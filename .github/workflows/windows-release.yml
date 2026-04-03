@@ -29,6 +29,6 @@ jobs:
 
       - uses: "actions/upload-artifact@v4"
         with:
-          name: Encode2It-Windows-x64
+          name: Encode2It-Windows-Release-x64
           path: ${{github.workspace}}/Encode2It/bin/Release/net10.0/**
           if-no-files-found: error
