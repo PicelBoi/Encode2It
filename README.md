@@ -8,16 +8,16 @@ An encoder for the Zap2It cable guide.
 
 - Delimiter file generation: Done!
 - Encoders for Listings/Weather: Done!
-- Inputs: W.I.P
-- Loop: W.I.P
+- Inputs: Done!
+- Loop: Done!
 
 ## Supported Inputs
 
 - Listings:
-  - XMLTV (in the works)
-  - Mist Streaming (in the works)
+  - XMLTV
+  - Mist Streaming
 - Weather:
-  - Open-Meteo (in the works)
+  - Open-Meteo
 
 ## Credits
 
