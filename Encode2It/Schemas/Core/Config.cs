@@ -73,8 +73,8 @@ public class WeatherInputConfigClass
                   This sets the value of the type (ex: api url, path to file, etc).
                   Examples:
                     - openmeteo:
-                      - https://api.open-meteo.com (if commercial)
-                      - https://customer-api.open-meteo.com (if non-commercial)
+                      - https://api.open-meteo.com (if non-commercial)
+                      - https://customer-api.open-meteo.com (if commercial)
               
         """
     );
