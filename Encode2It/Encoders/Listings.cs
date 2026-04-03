@@ -64,7 +64,7 @@ public class Listings
                     listing.ChannelNumber.ToString(),
                     listing.Time.ToString("MM/dd/yyyy"),
                     listing.Time.ToString("HH:mm"),
-                    listing.Callsign,
+                    listing.Callsign.Length > 6 ? listing.Callsign.Substring(0, 6) : listing.Callsign,
                     listing.Duration.ToString(),
                     listing.Titles[0],
                     listing.Titles[1],
