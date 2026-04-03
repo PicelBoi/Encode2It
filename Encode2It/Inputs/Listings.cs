@@ -26,6 +26,48 @@ public class ListingsInputs
                 Random rnd = new();
                 foreach (MistStreamingPublicChannel publicChannel in publicChannels)
                 {
+                    ListingTypes type = ListingTypes.Invisible;
+                    if (publicChannel.is_public)
+                    {
+                        if (publicChannel.channel_status == "online")
+                        {
+                            if (publicChannel.channel_category != null)
+                            {
+                                if (publicChannel.channel_category.Any("Movie".Contains))
+                                {
+                                    type = ListingTypes.Movies;
+                                }
+                                else if (publicChannel.channel_category.Any("News".Contains))
+                                {
+                                    type = ListingTypes.News;
+                                }
+                                else if (publicChannel.channel_category.Any("Sports".Contains))
+                                {
+                                    type = ListingTypes.Sports;
+                                }
+                                else if (publicChannel.channel_category.Any("Information".Contains))
+                                {
+                                    type = ListingTypes.News;
+                                }
+                                else if (publicChannel.channel_category.Any("Shopping".Contains))
+                                {
+                                    type = ListingTypes.News;
+                                }
+                                else if (publicChannel.channel_category.Any("Weather".Contains))
+                                {
+                                    type = ListingTypes.News;
+                                }
+                                else
+                                {
+                                    type = ListingTypes.Default;
+                                }
+                            }
+                            else
+                            {
+                                type = ListingTypes.Default;
+                            }
+                        }
+                    }
                     listings.Add(new()
                     {
                         ChannelNumber = publicChannel.channel_number ?? -1,
@@ -40,7 +82,7 @@ public class ListingsInputs
                         ],
                         Subtitle = "",
                         RatingA = "",
-                        ProgramType = publicChannel.is_public ? (publicChannel.channel_status == "online" ? ListingTypes.Default : ListingTypes.Invisible) : ListingTypes.Invisible,
+                        ProgramType = type,
                         Description = publicChannel.channel_description ?? "",
                         Category = (publicChannel.channel_category ?? [""])[0]
                     });
