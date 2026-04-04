@@ -84,7 +84,7 @@ public class ListingsInputs
                         RatingA = "",
                         ProgramType = type,
                         Description = publicChannel.channel_description ?? "",
-                        Category = (publicChannel.channel_category ?? [""])[0]
+                        Category = ((publicChannel.channel_category ?? [""]).Length == 0 ? [""] : (publicChannel.channel_category ?? [""]))[0]
                     });
                 }
 
